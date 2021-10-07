@@ -25,7 +25,7 @@ import {
 export function SignIn() {
 
    const navigation = useNavigation();
-   // const { signIn } = useAuth();
+   const { signIn } = useAuth();
 
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
@@ -44,7 +44,7 @@ export function SignIn() {
    
          await schema.validate({ email, password });
 
-         // signIn({ email, password });
+         signIn({ email, password });
       } catch (error) {
          if(error instanceof Yup.ValidationError) {
             Alert.alert('Opa', error.message);

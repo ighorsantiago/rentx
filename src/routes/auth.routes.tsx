@@ -37,3 +37,4 @@ export function AuthRoutes() {
         </Navigator>
     );
 }
+ 

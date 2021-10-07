@@ -35,10 +35,6 @@ export function AppStackRoutes() {
                 name="Confirmation"
                 component={Confirmation}
             />
-            <Screen
-                name="MyCars"
-                component={MyCars}
-            />
         </Navigator>
     );
 }
