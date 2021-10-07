@@ -8,6 +8,8 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 
+// import { database } from '../../database';
+
 import theme from '../../styles/theme';
 import { useAuth } from '../../hooks/auth';
 
@@ -19,12 +21,11 @@ import {
    Form,
    Footer,
 } from './styles';
-import { database } from '../../database';
 
 export function SignIn() {
 
    const navigation = useNavigation();
-   const { signIn } = useAuth();
+   // const { signIn } = useAuth();
 
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
@@ -43,7 +44,7 @@ export function SignIn() {
    
          await schema.validate({ email, password });
 
-         signIn({ email, password });
+         // signIn({ email, password });
       } catch (error) {
          if(error instanceof Yup.ValidationError) {
             Alert.alert('Opa', error.message);
@@ -60,15 +61,15 @@ export function SignIn() {
       navigation.navigate('SignUpFirstStep')
    }
 
-   useEffect(() => {
-      async function loadData() {
-         const userCollection = database.get('users');
-         const users = await userCollection.query().fetch();
-         console.log(users)
-      }
+   // useEffect(() => {
+   //    async function loadData() {
+   //       const userCollection = database.get('users');
+   //       const users = await userCollection.query().fetch();
+   //       console.log(users)
+   //    }
 
-      loadData()
-   }, []);
+   //    loadData()
+   // }, []);
 
    return (
 

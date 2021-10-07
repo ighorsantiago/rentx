@@ -34,6 +34,4 @@ export const Form = styled.View`
     margin: 64px 0;
 `;
 
-export const Footer = styled.View`
-
-`;
+export const Footer = styled.View``;

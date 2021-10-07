@@ -50,28 +50,33 @@ export function SignUpSecondStep() {
 
     async function handleRegister() {
 
-        if(!password || !passwordConfirm) {
+        if (!password || !passwordConfirm) {
             return Alert.alert('Ops...', 'Informe a senha e depois confirme...');
         }
 
-        if(password !== passwordConfirm) {
+        if (password !== passwordConfirm) {
             return Alert.alert('Ops...', 'As senhas não batem...');
         }
 
-        await api.post('/users', {
-            name: user.name,
-            email: user.email,
-            driver_license: user.driverLicense,
-            password,
-        }).then(() => {
-            navigation.navigate('Confirmation', {
-                title: 'Conta criada!',
-                message: `Agora é só fazer login\neaproveitar`,
-                nextScreenRoute: 'SignIn',
-            });
-        }).catch(() => {
-            Alert.alert('Opa', 'Não foi possível cadastrar.');
-        })
+        // await api.post('/users', {
+        //     name: user.name,
+        //     email: user.email,
+        //     driver_license: user.driverLicense,
+        //     password,
+        // }).then(() => {
+        //     navigation.navigate('Confirmation', {
+        //         title: 'Conta criada!',
+        //         message: `Agora é só fazer login\neaproveitar`,
+        //         nextScreenRoute: 'SignIn',
+        //     });
+        // }).catch(() => {
+        //     Alert.alert('Opa', 'Não foi possível cadastrar.');
+        // })
+        navigation.navigate('Confirmation', {
+            title: 'Conta criada!',
+            message: `Agora é só fazer login\ne aproveitar`,
+            nextScreenRoute: 'SignIn',
+        });
     }
 
     return (
@@ -83,7 +88,7 @@ export function SignUpSecondStep() {
                         <BackButton onPress={handleGoBack} />
                         <Steps>
                             <Bullet />
-                            <Bullet active/>
+                            <Bullet active />
                         </Steps>
                     </Header>
 

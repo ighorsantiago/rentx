@@ -5,8 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Splash } from '../screens/Splash';
 import { Confirmation } from '../screens/Confirmation';
 import { SignIn } from '../screens/SignIn';
-import { SignUpFirstStep } from '../screens/SingUp/SignUpFirstStep';
-import { SignUpSecondStep } from '../screens/SingUp/SignUpSecondStep';
+import { SignUpFirstStep } from '../screens/SignUp/SignUpFirstStep';
+import { SignUpSecondStep } from '../screens/SignUp/SignUpSecondStep';
 
 const { Navigator, Screen } = createStackNavigator();
 
