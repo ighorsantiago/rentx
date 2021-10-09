@@ -150,14 +150,14 @@ export function Profile() {
                             <PhotoButton onPress={handleAvatarSelect}>
                                 <Feather
                                     name="camera"
-                                    size={24}
+                                    size={20}
                                     color={theme.colors.shape}
                                 />
                             </PhotoButton>
                         </PhotoContainer>
                     </Header>
 
-                    <Content style={{ marginBottom: useBottomTabBarHeight() + 10 }}>
+                    <Content style={{ marginBottom: useBottomTabBarHeight() }}>
                         <Options>
                             <Option
                                 active={option === 'dataEdit'}

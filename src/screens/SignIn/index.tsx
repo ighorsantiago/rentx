@@ -8,7 +8,7 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 
-// import { database } from '../../database';
+import { database } from '../../database';
 
 import theme from '../../styles/theme';
 import { useAuth } from '../../hooks/auth';

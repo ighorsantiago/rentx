@@ -13,7 +13,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
     width: 100%;
-    height: 227px;
+    height: 200px;
 
     background-color: ${({ theme }) => theme.colors.header};
 
@@ -39,27 +39,27 @@ export const HeaderTitle = styled.Text`
 export const LogoutButton = styled(BorderlessButton)``;
 
 export const PhotoContainer = styled.View`
-    width: 180px;
-    height: 180px;
-    border-radius: 90px;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
 
     background-color: ${({ theme }) => theme.colors.shape};
-    margin-top: 48px;
+    margin-top: 25px;
 
     justify-content: center;
     align-items: center;
 `;
 
 export const Photo = styled.Image`
-    width: 180px;
-    height: 180px;
-    border-radius: 90px;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
 `;
 
 export const PhotoButton = styled(RectButton)`
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
 
     background-color: ${({ theme }) => theme.colors.main};
 
@@ -67,13 +67,13 @@ export const PhotoButton = styled(RectButton)`
     align-items: center;
 
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 8px;
+    right: 8px;
 `;
 
 export const Content = styled.View`
     padding: 0 24px;
-    margin-top: 122px;
+    margin-top: 85px;
 `;
 
 export const Options = styled.View`

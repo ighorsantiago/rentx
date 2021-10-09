@@ -12,13 +12,9 @@ export function Routes() {
 
    return (
 
-      // loading ? <LoadAnimation /> :
-      // <NavigationContainer>
-      //     { user.id ? <AppTabRoutes /> : <AuthRoutes /> }
-      // </NavigationContainer>
-
+      loading ? <LoadAnimation /> :
       <NavigationContainer>
-         { user.id ? <AppTabRoutes /> : <AuthRoutes /> }
+          { user.id ? <AppTabRoutes /> : <AuthRoutes /> }
       </NavigationContainer>
    );
 }
