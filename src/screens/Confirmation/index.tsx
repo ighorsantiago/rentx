@@ -8,56 +8,53 @@ import LogoSvg from '../../assets/logo_background_gray.svg';
 import DoneSvg from '../../assets/done.svg';
 
 import {
-   Container,
-   Content,
-   Title,
-   Message,
-   Footer
+    Container,
+    Content,
+    Title,
+    Message,
+    Footer
 } from './styles';
 
-interface Params {
-   title: string;
-   message: string;
-   nextScreenRoute: string;
+interface Params{
+    title: string;
+    message: string;
+    nextScreenRoute: string;
 }
 
-export function Confirmation() {
+export function Confirmation(){
+    const { width } = useWindowDimensions();
 
-   const { width } = useWindowDimensions();
+    const navigation = useNavigation();
+    const route = useRoute();
 
-   const navigation = useNavigation();
-   const route = useRoute();
+    const {title, message, nextScreenRoute} = route.params as Params;
 
-   const { title, message, nextScreenRoute } = route.params as Params;
+    function handleConfirm(){
+        navigation.navigate(nextScreenRoute);
+    }
 
-   function handleConfirm() {
-      navigation.navigate(nextScreenRoute);
-   }
+    return(
+        <Container>
+            <StatusBar
+                barStyle="light-content"
+                translucent
+                backgroundColor="transparent"
+            />
 
-   return (
+            <LogoSvg  width={width} />
 
-      <Container>
+            <Content>
+                <DoneSvg width={80} height={80}/>
+                <Title>{title}</Title>
 
-         <StatusBar
-            barStyle="light-content"
-            translucent
-            backgroundColor="transparent"
-         />
+                <Message>
+                    {message}
+                </Message>
+            </Content>
 
-         <LogoSvg width={width} />
-
-         <Content>
-            <DoneSvg width={80} height={80} />
-            <Title>{title}</Title>
-
-            <Message>
-               {message}
-            </Message>
-         </Content>
-
-         <Footer>
-            <ConfirmButton title="OK" onPress={handleConfirm}/>
-         </Footer>
-      </Container>
-   );
+            <Footer>
+                <ConfirmButton title="OK" onPress={handleConfirm}/>
+            </Footer>
+        </Container>
+    );
 }

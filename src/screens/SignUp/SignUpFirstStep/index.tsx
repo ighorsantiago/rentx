@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
-    Keyboard,
-    Alert
+    Keyboard
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 
 import { BackButton } from '../../../components/BackButton';
@@ -24,18 +24,17 @@ import {
 } from './styles';
 
 export function SignUpFirstStep() {
-
-    const navigation = useNavigation();
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [driverLicense, setDriverLicense] = useState('');
 
-    function handleGoBack() {
+    const navigation = useNavigation();
+
+    function handleBack() {
         navigation.goBack();
     }
-    
-    async function handleNextStep() {
+
+    async function handleNextStep(){
         try {
             const schema = Yup.object().shape({
                 driverLicense: Yup.string()
@@ -44,29 +43,28 @@ export function SignUpFirstStep() {
                     .email('E-mail inválido')
                     .required('E-mail é obrigatório'),
                 name: Yup.string()
-                    .required('Nome é obrigatório'),
+                    .required('Nome é obrigatório')
             });
 
             const data = { name, email, driverLicense };
             await schema.validate(data);
 
-            navigation.navigate('SignUpSecondStep', { user: data});
+            navigation.navigate('SignUpSecondStep', { user: data });
         } catch (error) {
-            if(error instanceof Yup.ValidationError) {
-                return Alert.alert('Opa!', error.message);
+            if(error instanceof Yup.ValidationError){
+                return Alert.alert('Opa', error.message);
             }
         }
     }
 
     return (
-
         <KeyboardAvoidingView behavior="position" enabled>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <Container>
                     <Header>
-                        <BackButton onPress={handleGoBack} />
+                        <BackButton onPress={handleBack} />
                         <Steps>
-                            <Bullet active={true} />
+                            <Bullet active />
                             <Bullet />
                         </Steps>
                     </Header>
@@ -74,6 +72,7 @@ export function SignUpFirstStep() {
                     <Title>
                         Crie sua{'\n'}conta
                     </Title>
+
                     <Subtitle>
                         Faça seu cadastro de{'\n'}
                         forma rápida e fácil
@@ -88,14 +87,15 @@ export function SignUpFirstStep() {
                             onChangeText={setName}
                             value={name}
                         />
+
                         <Input
                             iconName="mail"
                             placeholder="E-mail"
                             keyboardType="email-address"
-                            autoCapitalize="none"
                             onChangeText={setEmail}
                             value={email}
                         />
+
                         <Input
                             iconName="credit-card"
                             placeholder="CNH"

@@ -8,17 +8,14 @@ import CarSvg from '../assets/car.svg';
 import PeopleSvg from '../assets/people.svg';
 
 import { AppStackRoutes } from './app.stack.routes';
-
 import { MyCars } from '../screens/MyCars';
 import { Profile } from '../screens/Profile';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-export function AppTabRoutes() {
-
+export function AppTabRoutes(){
     const theme = useTheme();
-
-    return (
+    return(
         <Navigator
             tabBarOptions={{
                 activeTintColor: theme.colors.main,
@@ -26,15 +23,13 @@ export function AppTabRoutes() {
                 showLabel: false,
                 style: {
                     paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-                    height: 70,
-                    backgroundColor: theme.colors.background_primary,
-                    justifyContent: 'center',
-                    alignItems: 'center'
+                    height: 78,
+                    backgroundColor: theme.colors.background_primary
                 }
             }}
         >
-            <Screen
-                name="Home"
+            <Screen 
+                name="Home" 
                 component={AppStackRoutes}
                 options={{
                     tabBarIcon: (({ color }) => (
@@ -42,8 +37,8 @@ export function AppTabRoutes() {
                     ))
                 }}
             />
-            <Screen
-                name="MyCars"
+            <Screen 
+                name="MyCars" 
                 component={MyCars}
                 options={{
                     tabBarIcon: (({ color }) => (
@@ -51,15 +46,15 @@ export function AppTabRoutes() {
                     ))
                 }}
             />
-            <Screen
-                name="Profile"
+            <Screen 
+                name="Profile" 
                 component={Profile}
                 options={{
                     tabBarIcon: (({ color }) => (
                         <PeopleSvg width={24} height={24} fill={color} />
                     ))
                 }}
-            />
+            />            
         </Navigator>
-    );
+    )
 }

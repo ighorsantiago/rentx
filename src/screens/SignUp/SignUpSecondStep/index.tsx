@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
+import { Alert } from 'react-native';
+import { useNavigation, useRoute  } from '@react-navigation/native';
 import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
-    Keyboard,
-    Alert
+    Keyboard
 } from 'react-native';
 import { useTheme } from 'styled-components';
-import { api } from '../../../services/api';
-
-import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
 import { PasswordInput } from '../../../components/PasswordInput';
 import { Button } from '../../../components/Button';
+
+import api from '../../../services/api';
 
 import {
     Container,
@@ -25,7 +25,7 @@ import {
     FormTitle
 } from './styles';
 
-interface Params {
+interface Params{
     user: {
         name: string;
         email: string;
@@ -34,69 +34,71 @@ interface Params {
 }
 
 export function SignUpSecondStep() {
-
     const navigation = useNavigation();
-    const theme = useTheme();
-    const route = useRoute();
 
-    const { user } = route.params as Params;
+    const route = useRoute();
+    const theme = useTheme();
+
+    const {user} = route.params as Params;
 
     const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');    
 
-    function handleGoBack() {
+    function handleBack() {
         navigation.goBack();
     }
 
-    async function handleRegister() {
-
-        if (!password || !passwordConfirm) {
-            return Alert.alert('Ops...', 'Informe a senha e depois confirme...');
+    async function handleRegister(){
+        if(!password || !passwordConfirm){
+            return Alert.alert('Informe a senha e a confirmação.');
         }
 
-        if (password !== passwordConfirm) {
-            return Alert.alert('Ops...', 'As senhas não batem...');
+        if(password != passwordConfirm){
+            return Alert.alert('As senhas não são iguais');
         }
 
         await api.post('/users', {
             name: user.name,
             email: user.email,
             driver_license: user.driverLicense,
-            password,
-        }).then(() => {
+            password
+        })
+        .then(() => {
             navigation.navigate('Confirmation', {
-                title: 'Conta criada!',
-                message: `Agora é só fazer login\neaproveitar`,
                 nextScreenRoute: 'SignIn',
+                title: 'Conta criada',
+                message: `Agora é só fazer login\ne aproveitar.`
             });
-        }).catch(() => {
-            Alert.alert('Opa', 'Não foi possível cadastrar.');
+        })
+        .catch(() => {
+            Alert.alert('Opa', 'Não foi possível cadastrar');
         });
+        
     }
 
     return (
-
         <KeyboardAvoidingView behavior="position" enabled>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <Container>
                     <Header>
-                        <BackButton onPress={handleGoBack} />
+                        <BackButton onPress={handleBack} />
                         <Steps>
-                            <Bullet />
                             <Bullet active />
+                            <Bullet />
                         </Steps>
                     </Header>
 
                     <Title>
                         Crie sua{'\n'}conta
                     </Title>
+
                     <Subtitle>
                         Faça seu cadastro de{'\n'}
                         forma rápida e fácil
                     </Subtitle>
 
                     <Form>
-                        <FormTitle>2. Senha</FormTitle>
+                        <FormTitle>2. Senha</FormTitle>   
 
                         <PasswordInput
                             iconName="lock"
@@ -107,7 +109,7 @@ export function SignUpSecondStep() {
 
                         <PasswordInput
                             iconName="lock"
-                            placeholder="Repetir senha"
+                            placeholder="Repetir Senha"
                             onChangeText={setPasswordConfirm}
                             value={passwordConfirm}
                         />
